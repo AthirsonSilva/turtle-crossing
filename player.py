@@ -6,18 +6,26 @@ FINISH_LINE_Y = 280
 
 
 class Player(Turtle):
-    """ Making the player model class """
 
     def __init__(self):
         super().__init__()
-        self.shape('turtle')
+        self.shape("turtle")
         self.penup()
-        self.color('black')
+        self.go_to_start()
         self.setheading(90)
-        self.speed('fast')
-        self.goto(0, -300)
 
     def up(self):
-        """ Move the paddle up """
-        new_y = self.ycor() + 20
-        self.goto(x=self.xcor(), y=new_y)
+        """ Move the turtle up """
+        self.forward(MOVE_DISTANCE)
+
+    def go_to_start(self):
+        """ Resets turtle positino to the start """
+        self.goto(STARTING_POSITION)
+
+    def is_at_finish_line(self):
+        """ Checks if the turtle reached the other side """
+        if self.ycor() > FINISH_LINE_Y:
+            return True
+
+        else:
+            return False
